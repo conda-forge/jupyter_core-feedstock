@@ -1,4 +1,4 @@
-{% set version = "4.1.0" %}
+{% set version = "4.1.1" %}
 
 package:
   name: jupyter_core
@@ -6,16 +6,12 @@ package:
 
 source:
   fn: jupyter_core-{{ version }}.tar.gz
-  url: https://github.com/jupyter/jupyter_core/archive/{{ version }}.tar.gz
-  sha256: 80b78d215399760f4678cc1512118257543e17b48316254d1e1dbddfafa2dffc
+  url: https://pypi.io/packages/source/j/jupyter_core/jupyter_core-{{ version }}.tar.gz
+  sha256: ae0e69435258126466c86cd989e465a9c334c50107ef4f257decc8693650bf4c
 
 build:
   number: 0
-  script: python setup.py install
-  entry_points:
-    - jupyter = jupyter_core.command:main
-    - jupyter-migrate = jupyter_core.migrate:main
-    - jupyter-troubleshoot = jupyter_core.troubleshoot:main
+  script: pip install --no-deps .
 
 requirements:
   build:
