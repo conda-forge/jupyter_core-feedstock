@@ -66,6 +66,8 @@ install:
     - cmd: conda config --add channels conda-forge
     - cmd: conda install -n root --quiet --yes conda-forge-build-setup
     - cmd: run_conda_forge_build_setup
+    # FIXME: Workaround conda-build 1.21.11
+    - cmd: conda install conda-build=1.21.7 --yes
 
 # Skip .NET project specific build phase.
 build: off
