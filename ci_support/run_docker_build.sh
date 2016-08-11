@@ -41,9 +41,6 @@ conda clean --lock
 conda install --yes --quiet conda-forge-build-setup
 source run_conda_forge_build_setup
 
-# FIXME: Workaround conda-build 1.21.11
-conda install conda-build=1.21.7 --yes
-
 # Embarking on 3 case(s).
     set -x
     export CONDA_PY=27
