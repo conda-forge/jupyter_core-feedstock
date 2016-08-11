@@ -10,8 +10,8 @@ source:
   sha256: ae0e69435258126466c86cd989e465a9c334c50107ef4f257decc8693650bf4c
 
 build:
-  number: 0
-  script: python setup.py install
+  number: 1
+  script: pip install --no-deps .
   entry_points:
     - jupyter = jupyter_core.command:main
     - jupyter-migrate = jupyter_core.migrate:main
