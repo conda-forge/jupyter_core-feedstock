@@ -11,7 +11,11 @@ source:
 
 build:
   number: 0
-  script: pip install --no-deps .
+  script: python setup.py install
+  entry_points:
+    - jupyter = jupyter_core.command:main
+    - jupyter-migrate = jupyter_core.migrate:main
+    - jupyter-troubleshoot = jupyter_core.troubleshoot:main
 
 requirements:
   build:
@@ -40,3 +44,4 @@ extra:
     - jakirkham
     - pelson
     - minrk
+    - ocefpaf
