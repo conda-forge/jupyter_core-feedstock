@@ -1,4 +1,4 @@
-{% set version = "4.1.1" %}
+{% set version = "4.2.0" %}
 
 package:
   name: jupyter_core
@@ -7,10 +7,10 @@ package:
 source:
   fn: jupyter_core-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/j/jupyter_core/jupyter_core-{{ version }}.tar.gz
-  sha256: ae0e69435258126466c86cd989e465a9c334c50107ef4f257decc8693650bf4c
+  sha256: 44ec837a53bebf4e937112d3f9ccf31fee4f8db3e406dd0dd4f0378a354bed9c
 
 build:
-  number: 1
+  number: 0
   script: pip install --no-deps .
   entry_points:
     - jupyter = jupyter_core.command:main
@@ -37,6 +37,7 @@ test:
 about:
   home: http://jupyter.org
   license: BSD 3-clause
+  license_file: COPYING.md
   summary: Core common functionality of Jupyter projects.
 
 extra:
