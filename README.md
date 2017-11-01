@@ -14,9 +14,7 @@ Summary: Core common functionality of Jupyter projects.
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/jupyter_core-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/jupyter_core-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/jupyter_core-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/jupyter_core-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/jupyter_core-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/jupyter-core-feedstock/branch/master)
+All platforms: [![Circle CI](https://circleci.com/gh/conda-forge/jupyter_core-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/jupyter_core-feedstock)
 
 Current release info
 ====================
