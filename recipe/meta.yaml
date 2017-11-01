@@ -12,6 +12,7 @@ source:
 build:
   number: 0
   script: pip install --no-deps .
+  noarch: python
   entry_points:
     - jupyter = jupyter_core.command:main
     - jupyter-migrate = jupyter_core.migrate:main
