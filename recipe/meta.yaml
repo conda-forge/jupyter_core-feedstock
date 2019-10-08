@@ -24,6 +24,7 @@ requirements:
   run:
     - python
     - traitlets
+    - pywin32 >=1.0  # [win]
 
 test:
   commands:
