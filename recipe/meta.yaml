@@ -26,7 +26,7 @@ requirements:
     - traitlets
 
 {% set skip_all = "not test_not_on_path and not test_path_priority" %}
-{% set skip_win_py2k = " not test_migrate_config" %}
+{% set skip_win_py2k = " and not test_migrate_config" %}
 {% set skip = skip_all %}  # [not(win and py2k)]
 {% set skip = skip_all ~ skip_win_py2k %}  # [win and py2k]
 test:
