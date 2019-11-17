@@ -1,4 +1,4 @@
-{% set version = "4.5.0" %}
+{% set version = "4.6.1" %}
 
 package:
   name: jupyter_core
@@ -6,12 +6,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyter_core/jupyter_core-{{ version }}.tar.gz
-  sha256: 2c6e7c1e9f2ac45b5c2ceea5730bc9008d92fe59d0725eac57b04c0edfba24f7
+  sha256: a183e0ec2e8f6adddf62b0a3fc6a2237e3e0056d381e536d3e7c7ecc3067e244
 
 build:
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
-  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - jupyter = jupyter_core.command:main
     - jupyter-migrate = jupyter_core.migrate:main
@@ -19,26 +18,40 @@ build:
 
 requirements:
   build:
-    - python
     - pip
+    - python
   run:
     - python
+    - pywin32  # [win]
     - traitlets
 
+{% set skip_all = "not test_not_on_path and not test_path_priority" %}
+{% set skip_win_py2k = " and not test_migrate_config" %}
+{% set skip = skip_all %}  # [not(win and py2k)]
+{% set skip = skip_all ~ skip_win_py2k %}  # [win and py2k]
 test:
+  requires:
+    - ipykernel
+    - mock  # [py2k]
+    - nose
+    - pytest
   commands:
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
+    - python -m pytest --pyargs jupyter_core -k "{{ skip }}"
   imports:
     - jupyter_core
-    - jupyter_core.utils
 
 about:
-  home: http://jupyter.org
-  license: BSD 3-clause
+  home: https://jupyter.org
+  license: BSD-3-Clause
+  license_family: BSD
   license_file: COPYING.md
   summary: Core common functionality of Jupyter projects.
+  dev_url: https://github.com/jupyter/jupyter_core
+  doc_url: https://jupyter-core.readthedocs.io
+  doc_source_url: https://github.com/jupyter/jupyter_core/tree/master/docs
 
 extra:
   recipe-maintainers:
@@ -46,3 +59,4 @@ extra:
     - pelson
     - minrk
     - ocefpaf
+    - bollwyvl
