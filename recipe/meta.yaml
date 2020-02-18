@@ -35,11 +35,13 @@ test:
     - mock  # [py2k]
     - nose
     - pytest
+    - pip
   commands:
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
     - python -m pytest --pyargs jupyter_core -k "{{ skip }}"
+    - pip check
   imports:
     - jupyter_core
 
