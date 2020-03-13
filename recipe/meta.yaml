@@ -31,7 +31,7 @@ requirements:
 {% set skip = skip_all ~ skip_win_py2k %}  # [win and py2k]
 test:
   requires:
-    #- ipykernel
+    # - ipykernel
     - mock  # [py2k]
     - nose
     - pytest
@@ -40,7 +40,7 @@ test:
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
-    #- python -m pytest --pyargs jupyter_core -k "{{ skip }}"
+    # - python -m pytest --pyargs jupyter_core -k "{{ skip }}"
     - pip check
   imports:
     - jupyter_core
@@ -62,3 +62,4 @@ extra:
     - minrk
     - ocefpaf
     - bollwyvl
+    - Carreau
