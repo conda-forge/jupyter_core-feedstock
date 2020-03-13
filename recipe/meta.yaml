@@ -9,7 +9,7 @@ source:
   sha256: 394fd5dd787e7c8861741880bdf8a00ce39f95de5d18e579c74b882522219e7e
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - jupyter = jupyter_core.command:main
@@ -31,7 +31,7 @@ requirements:
 {% set skip = skip_all ~ skip_win_py2k %}  # [win and py2k]
 test:
   requires:
-    - ipykernel
+    # - ipykernel
     - mock  # [py2k]
     - nose
     - pytest
@@ -40,7 +40,7 @@ test:
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
-    - python -m pytest --pyargs jupyter_core -k "{{ skip }}"
+    # - python -m pytest --pyargs jupyter_core -k "{{ skip }}"
     - pip check
   imports:
     - jupyter_core
