@@ -18,25 +18,17 @@ build:
     - jupyter-troubleshoot = jupyter_core.troubleshoot:main
 
 requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
     - pip
     - python
   run:
     - python
-    - pywin32  # [win]
+    - pywin32
     - traitlets
 
-{% set skip_all = "not test_not_on_path and not test_path_priority" %}
-{% set skip_win_py2k = " and not test_migrate_config" %}
-{% set skip = skip_all %}  # [not(win and py2k)]
-{% set skip = skip_all ~ skip_win_py2k %}  # [win and py2k]
 test:
   requires:
-    # - ipykernel
-    - mock  # [py2k]
+    - ipykernel
     - nose
     - pytest
     - pip
@@ -44,7 +36,7 @@ test:
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
-    # - python -m pytest --pyargs jupyter_core -k "{{ skip }}"
+    - python -m pytest --pyargs jupyter_core
     - pip check
   imports:
     - jupyter_core
