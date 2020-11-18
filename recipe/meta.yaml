@@ -29,6 +29,7 @@ requirements:
     - pywin32  # [win]
     - traitlets
 
+{% set skip = "not test_not_on_path and not test_path_priority" %}
 test:
   requires:
     - ipykernel
@@ -39,7 +40,7 @@ test:
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
-    - python -m pytest --pyargs jupyter_core
+    - python -m pytest --pyargs jupyter_core -k "{{ skip }}"
     - pip check
   imports:
     - jupyter_core
