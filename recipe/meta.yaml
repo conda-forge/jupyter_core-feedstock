@@ -10,7 +10,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - jupyter = jupyter_core.command:main
@@ -32,7 +32,6 @@ requirements:
 {% set skip = "not test_not_on_path and not test_path_priority" %}
 test:
   requires:
-    - ipykernel
     - nose
     - pytest
     - pip
