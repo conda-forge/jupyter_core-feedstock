@@ -32,7 +32,6 @@ requirements:
 {% set skip = "not test_not_on_path and not test_path_priority" %}
 test:
   requires:
-    - ipykernel
     - nose
     - pytest
     - pip
