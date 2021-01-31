@@ -1,5 +1,5 @@
-{% set version = "4.7.0" %}
-{% set sha256 = "aa1f9496ab3abe72da4efe0daab0cb2233997914581f9a071e07498c6add8ed3" %}
+{% set version = "4.7.1" %}
+{% set sha256 = "79025cb3225efcd36847d0840f3fc672c0abd7afd0de83ba8a1d3837619122b4" %}
 
 package:
   name: jupyter_core
@@ -10,7 +10,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - jupyter = jupyter_core.command:main
