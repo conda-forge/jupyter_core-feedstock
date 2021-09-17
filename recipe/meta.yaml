@@ -1,5 +1,5 @@
-{% set version = "4.7.1" %}
-{% set sha256 = "79025cb3225efcd36847d0840f3fc672c0abd7afd0de83ba8a1d3837619122b4" %}
+{% set version = "4.8.0" %}
+{% set sha256 = "45466dbf295d7618218eaf13a02ef67bb7fa86f0db2aaaf874829e7c40378b32" %}
 
 package:
   name: jupyter_core
@@ -26,7 +26,7 @@ requirements:
     - python
   run:
     - python
-    - pywin32  # [win]
+    - pywin32  # [win and python_impl != 'pypy']
     - traitlets
 
 {% set skip = "not test_not_on_path and not test_path_priority" %}
