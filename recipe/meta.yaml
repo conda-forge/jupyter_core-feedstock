@@ -1,5 +1,5 @@
-{% set version = "4.8.0" %}
-{% set sha256 = "45466dbf295d7618218eaf13a02ef67bb7fa86f0db2aaaf874829e7c40378b32" %}
+{% set version = "4.8.1" %}
+{% set sha256 = "ef210dcb4fca04de07f2ead4adf408776aca94d17151d6f750ad6ded0b91ea16" %}
 
 package:
   name: jupyter_core
