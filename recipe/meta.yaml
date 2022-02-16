@@ -31,7 +31,7 @@ requirements:
 {% set skip = ["test_not_on_path", "test_path_priority"] %}
 # linux shebang lines have a length limit longer than the placeholder test prefix
 {% set skip = skip + ["test_argv0"] %}  # [linux]
-{% set skip = "-k 'not (" + (skip | join(' or ')) + ")'" %}
+{% set skip = '-k "not (' + (skip | join(' or ')) + ')"' %}
 
 # coverage is very slow on pypy
 {% set cov = "--cov jupyter_core --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under 65" %}
