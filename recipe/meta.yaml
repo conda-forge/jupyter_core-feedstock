@@ -1,5 +1,4 @@
 {% set version = "4.9.2" %}
-{% set sha256 = "d69baeb9ffb128b8cd2657fcf2703f89c769d1673c851812119e3a2a0e93ad9a" %}
 
 package:
   name: jupyter_core
@@ -7,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyter_core/jupyter_core-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: d69baeb9ffb128b8cd2657fcf2703f89c769d1673c851812119e3a2a0e93ad9a
 
 build:
   number: 0
@@ -29,20 +28,27 @@ requirements:
     - pywin32  # [win and python_impl != 'pypy']
     - traitlets
 
-{% set skip = "not test_not_on_path and not test_path_priority" %}
+{% set skip = ["test_not_on_path", "test_path_priority"] %}
+# linux shebang lines have a length limit longer than the placeholder test prefix
+{% set skip = skip + ["test_argv0"] %}  # [linux]
+{% set skip = "-k 'not (" + (skip | join(' or ')) + ")'" %}
+
+# coverage is very slow on pypy
+{% set cov = "--cov jupyter_core --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under 65" %}
+{% set cov = "" %}  # [python_impl == 'pypy']
+
 test:
+  imports:
+    - jupyter_core
   requires:
-    - nose
-    - pytest
+    - pytest-cov
     - pip
   commands:
+    - pip check
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
-    - python -m pytest --pyargs jupyter_core -k "{{ skip }}"
-    - pip check
-  imports:
-    - jupyter_core
+    - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
 
 about:
   home: https://jupyter.org
