@@ -1,4 +1,4 @@
-{% set version = "4.10.0" %}
+{% set version = "4.11.0" %}
 
 package:
   name: jupyter_core
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyter_core/jupyter_core-{{ version }}.tar.gz
-  sha256: a6de44b16b7b31d7271130c71a6792c4040f077011961138afed5e5e73181aec
+  sha256: 7cf01bed6579e83241b655c76910f5d608c4b1265dbffc0ffd4df3244628e31e
 
 build:
   number: 0
@@ -15,6 +15,7 @@ build:
     - jupyter = jupyter_core.command:main
     - jupyter-migrate = jupyter_core.migrate:main
     - jupyter-troubleshoot = jupyter_core.troubleshoot:main
+  skip: true  # [python_impl == 'pypy' and (aarch64 or ppc64le)]
 
 requirements:
   build:
@@ -23,7 +24,7 @@ requirements:
   host:
     - pip
     - python
-    - flit-core >=3.2,<4
+    - hatchling >=1.4
   run:
     - python
     - pywin32 >=1.0  # [win and python_impl != 'pypy']
@@ -71,3 +72,4 @@ extra:
     - bollwyvl
     - Carreau
     - jasongrout
+    - SylvainCorlay
