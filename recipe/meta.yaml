@@ -9,7 +9,7 @@ source:
   sha256: 2e5f244d44894c4154d06aeae3419dd7f1b0ef4494dc5584929b398c61cfd314
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - jupyter = jupyter_core.command:main
