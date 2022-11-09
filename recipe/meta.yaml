@@ -55,7 +55,7 @@ test:
   downstreams:
     - ipython
     # - jupyter_server  # fails on win
-    - jupyterlab
+    # - jupyterlab  # fails on windows, doesn't get m2-grep
     - nbconvert-core
 
 about:
