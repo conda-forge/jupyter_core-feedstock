@@ -15,7 +15,7 @@ build:
     - jupyter = jupyter_core.command:main
     - jupyter-migrate = jupyter_core.migrate:main
     - jupyter-troubleshoot = jupyter_core.troubleshoot:main
-  skip: true  # [py<37 or (python_impl == 'pypy' and (aarch64 or ppc64le))]
+  skip: true  # [py<38 or (python_impl == 'pypy' and (aarch64 or ppc64le))]
 
 requirements:
   build:
