@@ -1,4 +1,4 @@
-{% set version = "4.11.2" %}
+{% set version = "5.0.0" %}
 
 package:
   name: jupyter_core
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyter_core/jupyter_core-{{ version }}.tar.gz
-  sha256: c2909b9bc7dca75560a6c5ae78c34fd305ede31cd864da3c0d0bb2ed89aa9337
+  sha256: 4ed68b7c606197c7e344a24b7195eef57898157075a69655a886074b6beb7043
 
 build:
   number: 0
@@ -15,7 +15,7 @@ build:
     - jupyter = jupyter_core.command:main
     - jupyter-migrate = jupyter_core.migrate:main
     - jupyter-troubleshoot = jupyter_core.troubleshoot:main
-  skip: true  # [python_impl == 'pypy' and (aarch64 or ppc64le)]
+  skip: true  # [py<38 or (python_impl == 'pypy' and (aarch64 or ppc64le))]
 
 requirements:
   build:
@@ -26,6 +26,7 @@ requirements:
     - python
     - hatchling >=1.4
   run:
+    - platformdirs
     - python
     - pywin32 >=1.0  # [win and python_impl != 'pypy']
     - traitlets
@@ -51,6 +52,11 @@ test:
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
     - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
+  downstreams:
+    - ipython
+    # - jupyter_server  # fails on win
+    # - jupyterlab  # fails on windows, doesn't get m2-grep
+    - nbconvert-core
 
 about:
   home: https://jupyter.org
@@ -60,7 +66,7 @@ about:
   summary: Core common functionality of Jupyter projects.
   dev_url: https://github.com/jupyter/jupyter_core
   doc_url: https://jupyter-core.readthedocs.io
-  doc_source_url: https://github.com/jupyter/jupyter_core/tree/master/docs
+  doc_source_url: https://github.com/jupyter/jupyter_core/tree/v{{ version }}/docs
 
 extra:
   recipe-maintainers:
