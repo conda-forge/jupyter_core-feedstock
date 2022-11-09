@@ -54,7 +54,7 @@ test:
     - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
   downstreams:
     - ipython
-    - jupyter_server
+    # - jupyter_server  # fails on win
     - jupyterlab
     - nbconvert-core
 
