@@ -12,3 +12,5 @@ provider:
 test_on_native_only: true
 conda_build:
   pkg_format: '2'
+abi_migration_branches:
+  - 4.x
