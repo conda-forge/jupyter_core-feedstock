@@ -14,5 +14,6 @@ conda_build:
   pkg_format: '2'
 abi_migration_branches:
   - 4.x
-# `mamba` seems to fail with `test/downstreams`
-build_with_mambabuild: false
+# `boa` seems to fail with `test/downstreams` with `local` JSON
+# errors, but `conda` can't find some test dependencies
+# build_with_mambabuild: false

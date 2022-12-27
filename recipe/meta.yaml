@@ -52,11 +52,11 @@ test:
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
     - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
-  downstreams:
-    # - ipython # issue with python 3.11
-    # - jupyter_server  # fails on win
-    # - jupyterlab  # fails on windows, doesn't get m2-grep
-    - nbconvert-core
+  # downstreams:
+  #  - ipython # issue with python 3.11
+  #  - jupyter_server  # fails on win
+  #  - jupyterlab  # fails on windows, doesn't get m2-grep
+  #  - nbconvert-core
 
 about:
   home: https://jupyter.org
