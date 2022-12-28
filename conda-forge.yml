@@ -14,3 +14,5 @@ conda_build:
   pkg_format: '2'
 abi_migration_branches:
   - 4.x
+# `mamba` seems to fail with `test/downstreams`
+build_with_mambabuild: false
