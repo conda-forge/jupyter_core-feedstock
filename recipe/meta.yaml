@@ -1,4 +1,4 @@
-{% set version = "5.1.1" %}
+{% set version = "5.1.2" %}
 
 package:
   name: jupyter_core
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/jupyter/jupyter_core/releases/download/v{{ version }}/jupyter_core-{{ version }}.tar.gz
-  sha256: f342d29eb6edb06f8dffa69adea987b3a9ee2b6702338a8cb6911516ea0b432d
+  sha256: 62b00d52f030643d29f86aafdfd9b36d42421823599a272eb4c2df1d1cc7f723
 
 build:
   number: 0
@@ -53,9 +53,9 @@ test:
     - jupyter-troubleshoot --help
     - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
   downstreams:
-    # - ipython # issue with python 3.11
-    # - jupyter_server  # fails on win
-    # - jupyterlab  # fails on windows, doesn't get m2-grep
+    - ipython # issue with python 3.11
+    - jupyter_server  # fails on win
+    - jupyterlab  # fails on windows, doesn't get m2-grep
     - nbconvert-core
 
 about:
