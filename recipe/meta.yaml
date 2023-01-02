@@ -53,7 +53,7 @@ test:
     - jupyter-troubleshoot --help
     - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
   downstreams:
-    - ipython # [py>=3.11]
+    - ipython  # [py>=3.11]
     - jupyter_server  # [not win]
     - jupyterlab  # [not win]
     - nbconvert-core
