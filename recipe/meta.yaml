@@ -1,4 +1,4 @@
-{% set version = "5.1.2" %}
+{% set version = "5.1.3" %}
 
 package:
   name: jupyter_core
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/jupyter/jupyter_core/releases/download/v{{ version }}/jupyter_core-{{ version }}.tar.gz
-  sha256: 62b00d52f030643d29f86aafdfd9b36d42421823599a272eb4c2df1d1cc7f723
+  sha256: 82e1cff0ef804c38677eff7070d5ff1d45037fef01a2d9ba9e6b7b8201831e9f
 
 build:
   number: 0
@@ -53,8 +53,8 @@ test:
     - jupyter-troubleshoot --help
     - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
   downstreams:
-    # apparently issues with pygments and py3.11
-    # - ipython
+    # apparently issues with py3.11
+    - ipython  # [py<3.11]
     - jupyter_server  # [not win]
     - jupyterlab  # [not win]
     - nbconvert-core
