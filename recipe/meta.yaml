@@ -54,7 +54,7 @@ test:
     - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
   downstreams:
     # apparently issues with pygments and py3.11
-    # - ipython
+    - ipython
     - jupyter_server  # [not win]
     - jupyterlab  # [not win]
     - nbconvert-core
