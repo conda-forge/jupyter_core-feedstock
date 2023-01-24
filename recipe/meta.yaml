@@ -1,4 +1,4 @@
-{% set version = "5.1.4" %}
+{% set version = "5.1.5" %}
 
 package:
   name: jupyter_core
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/jupyter/jupyter_core/releases/download/v{{ version }}/jupyter_core-{{ version }}.tar.gz
-  sha256: 80d29fef4210ca8d30f25018a28d06dcc582bb1a82b848f2eab61a349a007af1
+  sha256: 8e54c48cde1e0c8345f64bcf9658b78044ddf02b273726cea9d9f59be4b02130
 
 build:
   number: 0
