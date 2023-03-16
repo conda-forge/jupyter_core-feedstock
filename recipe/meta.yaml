@@ -28,7 +28,7 @@ requirements:
   run:
     - platformdirs >=2.5
     - python
-    - pywin32 >=1.0  # [win and python_impl != 'pypy']
+    - pywin32 >=300  # [win and python_impl != 'pypy']
     - traitlets >=5.3
 
 {% set skip = ["test_not_on_path", "test_path_priority"] %}
@@ -63,7 +63,7 @@ about:
   home: https://jupyter.org
   license: BSD-3-Clause
   license_family: BSD
-  license_file: COPYING.md
+  license_file: LICENSE
   summary: Core common functionality of Jupyter projects.
   dev_url: https://github.com/jupyter/jupyter_core
   doc_url: https://jupyter-core.readthedocs.io
