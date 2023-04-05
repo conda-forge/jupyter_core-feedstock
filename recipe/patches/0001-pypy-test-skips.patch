@@ -1,0 +1,45 @@
+diff --git a/jupyter_core/tests/test_command.py b/jupyter_core/tests/test_command.py
+index dc457d5..2aa30a9 100644
+--- a/jupyter_core/tests/test_command.py
++++ b/jupyter_core/tests/test_command.py
+@@ -219,7 +219,10 @@ def test_path_priority(tmpdir):
+     out = check_output([sys.executable, str(jupyter), "witness"], env=env)
+     assert b"WITNESS A" in out
+ 
+-
++@pytest.mark.skipif(
++    sys.implementation.name == "pypy" and sys.platform == "win32",
++    reason="Fails on PyPy + windows"
++)
+ @skip_darwin
+ def test_argv0(tmpdir):
+     a = tmpdir.mkdir("a")
+diff --git a/jupyter_core/tests/test_migrate.py b/jupyter_core/tests/test_migrate.py
+index 776b3cc..a8c3669 100644
+--- a/jupyter_core/tests/test_migrate.py
++++ b/jupyter_core/tests/test_migrate.py
+@@ -5,6 +5,7 @@
+ import os
+ import re
+ import shutil
++import sys
+ from tempfile import mkdtemp
+ from unittest.mock import patch
+ 
+@@ -26,11 +27,15 @@ here = os.path.dirname(__file__)
+ dotipython = pjoin(here, "dotipython")
+ dotipython_empty = pjoin(here, "dotipython_empty")
+ 
++IS_PYPY_WIN = (sys.implementation.name == "pypy" and os.name == "nt")
+ 
+ @pytest.fixture
+ def td(request):
+     """Fixture for a temporary directory"""
+-    td = mkdtemp("μnïcø∂e")
++    if IS_PYPY_WIN:
++        td = mkdtemp("ascii")
++    else:
++        td = mkdtemp("μnïcø∂e")
+     request.addfinalizer(lambda: shutil.rmtree(td))
+     return td
+ 

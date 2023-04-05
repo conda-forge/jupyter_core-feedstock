@@ -7,6 +7,8 @@ package:
 source:
   url: https://github.com/jupyter/jupyter_core/releases/download/v{{ version }}/jupyter_core-{{ version }}.tar.gz
   sha256: 6db75be0c83edbf1b7c9f91ec266a9a24ef945da630f3120e1a0046dc13713fc
+  patches:
+    - patches/0001-pypy-test-skips.patch
 
 build:
   number: 1
@@ -55,7 +57,7 @@ test:
   downstreams:
     # apparently issues with py3.11
     - ipython  # [py<3.11]
-    - jupyter_server  # [not win]
+    - jupyter_server  # [not win and not (python_impl == 'pypy' and osx)]
     - jupyterlab  # [not win]
     - nbconvert-core
 
