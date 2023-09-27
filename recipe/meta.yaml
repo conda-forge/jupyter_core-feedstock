@@ -41,6 +41,8 @@ requirements:
 {% set cov = "" %}  # [win or python_impl == 'pypy']
 
 test:
+  source_files:
+    - tests
   imports:
     - jupyter_core
   requires:
@@ -51,7 +53,7 @@ test:
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
-    - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
+    - pytest -vv {{ cov }} {{ skip }}
   downstreams:
     # apparently issues with py3.11
     - ipython  # [py<3.11]
