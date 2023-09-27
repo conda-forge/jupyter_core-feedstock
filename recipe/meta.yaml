@@ -1,4 +1,4 @@
-{% set version = "5.3.1" %}
+{% set version = "5.3.2" %}
 
 package:
   name: jupyter_core
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://github.com/jupyter/jupyter_core/releases/download/v{{ version }}/jupyter_core-{{ version }}.tar.gz
-  sha256: 5ba5c7938a7f97a6b0481463f7ff0dbac7c15ba48cf46fa4035ca6e838aa1aba
+  sha256: 0c28db6cbe2c37b5b398e1a1a5b22f84fd64cd10afc1f6c05b02fb09481ba45f
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - jupyter = jupyter_core.command:main
@@ -41,6 +41,8 @@ requirements:
 {% set cov = "" %}  # [win or python_impl == 'pypy']
 
 test:
+  source_files:
+    - tests
   imports:
     - jupyter_core
   requires:
@@ -51,7 +53,7 @@ test:
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
-    - pytest -vv --pyargs jupyter_core {{ cov }} {{ skip }}
+    - pytest -vv {{ cov }} {{ skip }}
   downstreams:
     # apparently issues with py3.11
     - ipython  # [py<3.11]
