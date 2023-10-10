@@ -1,3 +1,4 @@
+{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
 {% set version = "5.4.0" %}
 
 package:
