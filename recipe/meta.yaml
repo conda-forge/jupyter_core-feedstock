@@ -1,4 +1,5 @@
-{% set version = "5.4.0" %}
+{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
+{% set version = "5.5.0" %}
 
 package:
   name: jupyter_core
@@ -6,7 +7,7 @@ package:
 
 source:
   url: https://github.com/jupyter/jupyter_core/releases/download/v{{ version }}/jupyter_core-{{ version }}.tar.gz
-  sha256: e4b98344bb94ee2e3e6c4519a97d001656009f9cb2b7f2baf15b3c205770011d
+  sha256: 880b86053bf298a8724994f95e99b99130659022a4f7f45f563084b6223861d3
 
 build:
   number: 0
