@@ -1,7 +1,8 @@
 {% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
 {% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
 {% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% set version = "5.6.0" %}
+{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
+{% set version = "5.6.1" %}
 
 package:
   name: jupyter_core
@@ -9,7 +10,7 @@ package:
 
 source:
   url: https://github.com/jupyter/jupyter_core/releases/download/v{{ version }}/jupyter_core-{{ version }}.tar.gz
-  sha256: 2970f1554685c89ebfedd784e44eea62d17a935e817f7bb704329a6129e178ca
+  sha256: 5139be639404f7f80f3db6f687f47b8a8ec97286b4fa063c984024720e7224dc
 
 build:
   number: 0
