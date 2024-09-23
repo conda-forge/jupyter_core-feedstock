@@ -1,10 +1,3 @@
-{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
 {% set version = "5.7.2" %}
 
 package:
@@ -16,18 +9,15 @@ source:
   sha256: aa5f8d32bbf6b431ac830496da7392035d6f61b4f54872f15c4bd2a9c3f536d9
 
 build:
-  number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  number: 1
+  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   entry_points:
     - jupyter = jupyter_core.command:main
     - jupyter-migrate = jupyter_core.migrate:main
     - jupyter-troubleshoot = jupyter_core.troubleshoot:main
-  skip: true  # [py<38 or (python_impl == 'pypy' and (aarch64 or ppc64le))]
 
 requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
     - pip
     - python
@@ -35,17 +25,29 @@ requirements:
   run:
     - platformdirs >=2.5
     - python
-    - pywin32 >=300  # [win and python_impl != 'pypy']
     - traitlets >=5.3
+    {% if pywin32 == "cpython" %}
+    - pywin32 >=300
+    {% elif pywin32 == "unix" %}
+    - __unix
+    {% elif pywin32 == "pypy" %}
+    - pypy
+    {% endif %}
+  run_constrained:
+    {% if pywin32 == "cpython" %}
+    - pypy <0
+    {% elif pywin32 == "pypy" %}
+    - pywin32 <0
+    {% endif %}
 
-{% set skip = ["test_not_on_path", "test_path_priority"] %}
-# linux shebang lines have a length limit longer than the placeholder test prefix
-{% set skip = skip + ["test_argv0"] %}  # [linux]
+{% set skip = ["test_not_on_path", "test_path_priority", "test_argv0"] %}
 {% set skip = '-k "not (' + (skip | join(' or ')) + ')"' %}
 
-# coverage is very slow on pypy
+{% if pywin32 == "unix" %}
 {% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% set cov = "" %}  # [win or python_impl == 'pypy']
+{% else %}
+{% set cov = "" %}
+{% endif %}
 
 test:
   source_files:
@@ -62,10 +64,9 @@ test:
     - jupyter-troubleshoot --help
     - pytest -vv --color=yes {{ cov }} {{ skip }}
   downstreams:
-    # apparently issues with py3.11
-    - ipython  # [py<3.11]
-    - jupyter_server  # [not win]
-    - jupyterlab  # [not win]
+    - ipython
+    - jupyter_server
+    - jupyterlab
     - nbconvert-core
 
 about:
