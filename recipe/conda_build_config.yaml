@@ -1,4 +1,4 @@
-pywin32:
-  - unix     # [linux]
-  - cpython  # [win]
-  - pypy     # [win]
+noarch_platform:
+  - unix         # [linux]
+  - win          # [win]
+  - win_no_pw32  # [win]

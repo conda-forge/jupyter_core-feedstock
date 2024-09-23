@@ -8,11 +8,11 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
-      win_64_with_pw320:
-        CONFIG: win_64_with_pw320
+      win_64_noarch_platformwin:
+        CONFIG: win_64_noarch_platformwin
         UPLOAD_PACKAGES: 'True'
-      win_64_with_pw321:
-        CONFIG: win_64_with_pw321
+      win_64_noarch_platformwin_no_pw32:
+        CONFIG: win_64_noarch_platformwin_no_pw32
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables:

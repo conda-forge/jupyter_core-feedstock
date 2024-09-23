@@ -22,42 +22,33 @@ requirements:
     - pip
     - python >=3.8
     - hatchling >=1.4
-    {% if pywin32 == "unix" %}
-    - __unix
-    {% elif pywin32 == "cpython" %}
-    - __win
-    - pywin32 >=300
-    {% elif pywin32 == "pypy" %}
-    - __win
+    {% if noarch_platform == "win_no_pw32" %}
     - pypy
     {% endif %}
   run:
     - platformdirs >=2.5
     - python >=3.8
     - traitlets >=5.3
-    {% if pywin32 == "unix" %}
-    - __unix
-    {% elif pywin32 == "cpython" %}
+    {% if noarch_platform == "unix" %}
+    - __{{ noarch_platform }}
+    {% elif noarch_platform == "win" %}
     - __win
     - pywin32 >=300
-    {% elif pywin32 == "pypy" %}
+    {% elif noarch_platform == "win_no_pw32" %}
     - __win
     - pypy
     {% endif %}
   run_constrained:
-    {% if pywin32 == "cpython" %}
+    {% if noarch_platform == "win" %}
     - pypy <0
-    {% elif pywin32 == "pypy" %}
-    - pywin32 <0
     {% endif %}
 
 {% set skip = ["test_not_on_path", "test_path_priority", "test_argv0"] %}
 {% set skip = '-k "not (' + (skip | join(' or ')) + ')"' %}
 
-{% if pywin32 == "unix" %}
-{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% else %}
 {% set cov = "" %}
+{% if noarch_platform == "unix" %}
+{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
 {% endif %}
 
 test:
