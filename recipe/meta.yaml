@@ -77,8 +77,8 @@ test:
     {% if noarch_platform == "unix" %}
     - jupyter_server
     - jupyterlab
-    {% else %}
-    # fails against py3.12 on unix
+    {% elif noarch_platform == "win" %}
+    # fails against cpython 3.12 on linux-64 and pypy3.9 on win-64
     - ipython
     {% endif %}
 
