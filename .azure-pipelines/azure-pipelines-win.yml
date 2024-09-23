@@ -8,11 +8,11 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
-      win_64_pywin32cpython:
-        CONFIG: win_64_pywin32cpython
+      win_64_with_pw320:
+        CONFIG: win_64_with_pw320
         UPLOAD_PACKAGES: 'True'
-      win_64_pywin32pypy:
-        CONFIG: win_64_pywin32pypy
+      win_64_with_pw321:
+        CONFIG: win_64_with_pw321
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables:
