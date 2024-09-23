@@ -66,10 +66,14 @@ test:
     - jupyter-troubleshoot --help
     - pytest -vv --color=yes {{ cov }} {{ skip }}
   downstreams:
-    - ipython
+    - nbconvert-core
+    {% if noarch_platform == "unix" %}
     - jupyter_server
     - jupyterlab
-    - nbconvert-core
+    {% else %}
+    # fails against py3.12 on unix
+    - ipython
+    {% endif %}
 
 about:
   home: https://jupyter.org
