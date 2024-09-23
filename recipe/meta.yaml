@@ -20,17 +20,19 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python >=3.8
     - hatchling >=1.4
   run:
     - platformdirs >=2.5
-    - python
+    - python >=3.8
     - traitlets >=5.3
-    {% if pywin32 == "cpython" %}
-    - pywin32 >=300
-    {% elif pywin32 == "unix" %}
+    {% if pywin32 == "unix" %}
     - __unix
+    {% elif pywin32 == "cpython" %}
+    - __win
+    - pywin32 >=300
     {% elif pywin32 == "pypy" %}
+    - __win
     - pypy
     {% endif %}
   run_constrained:
