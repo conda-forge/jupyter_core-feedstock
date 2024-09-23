@@ -44,6 +44,13 @@ requirements:
     {% endif %}
 
 {% set skip = ["test_not_on_path", "test_path_priority", "test_argv0"] %}
+
+# pypy is weird
+{% if noarch_platform == "win_no_pw32" %}
+{% set skip = skip + ["migrate"] %}
+{% endif %}
+
+# combine for -k
 {% set skip = '-k "not (' + (skip | join(' or ')) + ')"' %}
 
 {% set cov = "" %}
