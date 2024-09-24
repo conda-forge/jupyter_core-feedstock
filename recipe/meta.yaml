@@ -1,5 +1,11 @@
 {% set version = "5.7.2" %}
 
+{% set build = 2 %}
+{% if noarch_platform != "win_no_pw32" %}
+{# use build offset to prioritize builds that require pywin32 #}
+{% set build = build + 100 %}
+{% endif %}
+
 package:
   name: jupyter_core
   version: {{ version }}
@@ -9,7 +15,7 @@ source:
   sha256: aa5f8d32bbf6b431ac830496da7392035d6f61b4f54872f15c4bd2a9c3f536d9
 
 build:
-  number: 1
+  number: {{ build }}
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   entry_points:
@@ -22,9 +28,6 @@ requirements:
     - pip
     - python >=3.8
     - hatchling >=1.4
-    {% if noarch_platform == "win_no_pw32" %}
-    - pypy
-    {% endif %}
   run:
     - platformdirs >=2.5
     - python >=3.8
@@ -34,10 +37,8 @@ requirements:
     {% elif noarch_platform == "win" %}
     - __win
     - pywin32 >=300
-    - cpython
     {% elif noarch_platform == "win_no_pw32" %}
     - __win
-    - pypy
     {% endif %}
 
 {% set skip = ["test_not_on_path", "test_path_priority", "test_argv0"] %}
@@ -63,6 +64,9 @@ test:
   requires:
     - pytest-cov
     - pip
+    {% if noarch_platform == "win_no_pw32" %}
+    - pypy
+    {% endif %}
   commands:
     - pip check
     - jupyter -h
