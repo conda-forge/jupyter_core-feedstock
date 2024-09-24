@@ -34,13 +34,10 @@ requirements:
     {% elif noarch_platform == "win" %}
     - __win
     - pywin32 >=300
+    - cpython
     {% elif noarch_platform == "win_no_pw32" %}
     - __win
     - pypy
-    {% endif %}
-  run_constrained:
-    {% if noarch_platform == "win" %}
-    - pypy <0
     {% endif %}
 
 {% set skip = ["test_not_on_path", "test_path_priority", "test_argv0"] %}
