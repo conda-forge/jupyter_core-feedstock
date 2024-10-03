@@ -1,5 +1,7 @@
 {% set version = "5.7.2" %}
-{% set noarch_platform = noarch_platform|default("") %}
+
+# handle undefined `noarch_platform` during bot re-rendering
+{% set noarch_platform = noarch_platform | default("") %}
 
 package:
   name: jupyter_core
