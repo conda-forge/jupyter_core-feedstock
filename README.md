@@ -31,7 +31,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-jupyter_core-green.svg)](https://anaconda.org/conda-forge/jupyter_core) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyter_core.svg)](https://anaconda.org/conda-forge/jupyter_core) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyter_core.svg)](https://anaconda.org/conda-forge/jupyter_core) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyter_core.svg)](https://anaconda.org/conda-forge/jupyter_core) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-jupyter__core-green.svg)](https://anaconda.org/conda-forge/jupyter_core) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyter_core.svg)](https://anaconda.org/conda-forge/jupyter_core) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyter_core.svg)](https://anaconda.org/conda-forge/jupyter_core) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyter_core.svg)](https://anaconda.org/conda-forge/jupyter_core) |
 
 Installing jupyter_core
 =======================
