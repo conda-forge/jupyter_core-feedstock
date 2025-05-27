@@ -1,4 +1,4 @@
-{% set version = "5.8.0" %}
+{% set version = "5.8.1" %}
 
 # handle undefined `noarch_platform` during bot re-rendering
 {% set noarch_platform = noarch_platform | default("") %}
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/jupyter/jupyter_core/releases/download/v{{ version }}/jupyter_core-{{ version }}.tar.gz
-  sha256: eac0af6bc62f66cd5faaf84fe9613e4f2eaf1a8b183bc097403822bd5122c86e
+  sha256: 0a5f9706f70e64786b75acba995988915ebd4601c8a52e534a40b51c95f59941
 
 build:
   number: 0
