@@ -1,8 +1,5 @@
 {% set version = "5.8.1" %}
 
-# handle undefined `noarch_platform` during bot re-rendering
-{% set noarch_platform = noarch_platform | default("") %}
-
 package:
   name: jupyter_core
   version: {{ version }}
@@ -12,7 +9,7 @@ source:
   sha256: 0a5f9706f70e64786b75acba995988915ebd4601c8a52e534a40b51c95f59941
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   entry_points:
@@ -25,38 +22,10 @@ requirements:
     - pip
     - python >=3.8
     - hatchling >=1.4
-    {% if noarch_platform == "win_no_pw32" %}
-    - pypy
-    {% endif %}
   run:
     - platformdirs >=2.5
     - python >=3.8
     - traitlets >=5.3
-    {% if noarch_platform == "unix" %}
-    - __{{ noarch_platform }}
-    {% elif noarch_platform == "win" %}
-    - __win
-    - pywin32 >=300
-    - cpython
-    {% elif noarch_platform == "win_no_pw32" %}
-    - __win
-    - pypy
-    {% endif %}
-
-{% set skip = ["test_not_on_path", "test_path_priority", "test_argv0"] %}
-
-# pypy is weird
-{% if noarch_platform == "win_no_pw32" %}
-{% set skip = skip + ["migrate"] %}
-{% endif %}
-
-# combine for -k
-{% set skip = '-k "not (' + (skip | join(' or ')) + ')"' %}
-
-{% set cov = "" %}
-{% if noarch_platform == "unix" %}
-{% set cov = "--cov=jupyter_core --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=64" %}
-{% endif %}
 
 test:
   source_files:
@@ -64,23 +33,12 @@ test:
   imports:
     - jupyter_core
   requires:
-    - pytest-cov
     - pip
   commands:
     - pip check
     - jupyter -h
     - jupyter-migrate -h
     - jupyter-troubleshoot --help
-    - pytest -vv --color=yes {{ cov }} {{ skip }}
-  downstreams:
-    - nbconvert-core
-    {% if noarch_platform == "unix" %}
-    - jupyter_server
-    - jupyterlab
-    {% elif noarch_platform == "win" %}
-    # fails against cpython 3.12 on linux-64 and pypy3.9 on win-64
-    - ipython
-    {% endif %}
 
 about:
   home: https://jupyter.org

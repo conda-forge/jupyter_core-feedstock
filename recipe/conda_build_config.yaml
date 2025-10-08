@@ -1,4 +1,0 @@
-noarch_platform:
-  - unix         # [linux]
-  - win          # [win]
-  - win_no_pw32  # [win]
