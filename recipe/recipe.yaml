@@ -65,12 +65,10 @@ tests:
       - jupyter-troubleshoot --help
       - python run_test.py
   - downstream: ipython
-  # #103: times out in `test_execution_state`
-  #
-  #  AssertionError: assert 'starting' == 'busy'
-  #
+  # #103: times out in `test_execution_state`: AssertionError: assert 'starting' == 'busy'
   # - downstream: jupyter_server
-  - downstream: jupyterlab
+  # #103: v0 recipe
+  # - downstream: jupyterlab
   - downstream: nbconvert-core
 
 about:
