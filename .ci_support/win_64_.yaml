@@ -3,4 +3,6 @@ channel_sources:
 channel_targets:
 - conda-forge main
 noarch_platform:
-- win_no_pw32
+- win
+python_min:
+- '3.10'

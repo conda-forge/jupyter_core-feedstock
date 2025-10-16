@@ -3,7 +3,7 @@ About jupyter_core-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jupyter_core-feedstock/blob/main/LICENSE.txt)
 
-Home: https://jupyter.org
+Home: https://jupyter.org/
 
 Package license: BSD-3-Clause
 
@@ -11,7 +11,7 @@ Summary: Core common functionality of Jupyter projects.
 
 Development: https://github.com/jupyter/jupyter_core
 
-Documentation: https://jupyter-core.readthedocs.io
+Documentation: https://jupyter-core.readthedocs.io/
 
 Current build status
 ====================
