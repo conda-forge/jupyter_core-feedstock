@@ -64,7 +64,10 @@ tests:
       - jupyter-migrate -h
       - jupyter-troubleshoot --help
       - python run_test.py
-  - downstream: ipython
+  # #103: times out in `test_stream_performance`: assert 21.310507099999995 < 10
+  - if: unix
+    then:
+      downstream: ipython
   # #103: times out in `test_execution_state`: AssertionError: assert 'starting' == 'busy'
   # - downstream: jupyter_server
   # #103: v0 recipe
