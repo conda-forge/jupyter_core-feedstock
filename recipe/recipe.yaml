@@ -12,7 +12,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.io/packages/source/j/jupyter-core/jupyter_core-${{ version }}.tar.gz
+  url: https://pypi.org/packages/source/j/jupyter-core/jupyter_core-${{ version }}.tar.gz
   sha256: 5f8fba10cfc946fe1b4037e986458fc89430397207b21d741dc399d3d42951d4
 
 build:
