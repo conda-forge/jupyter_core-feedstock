@@ -12,7 +12,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.io/packages/source/j/jupyter-core/jupyter_core-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/j/jupyter-core/jupyter_core-${{ version }}.tar.gz
   sha256: 5f8fba10cfc946fe1b4037e986458fc89430397207b21d741dc399d3d42951d4
 
 build:
@@ -49,11 +49,14 @@ tests:
         - ${{ python_check_max }}.*
   - files:
       source:
+        - pyproject.toml
         - tests/
       recipe:
         - run_test.py
     requirements:
       run:
+        # `jupyter-troublehsoot` shells out to `pip` in test
+        - pip
         - pytest-cov
         - python ${{ python_min }}.*
     script:
@@ -62,7 +65,11 @@ tests:
       - jupyter-troubleshoot --help
       - python run_test.py
   - downstream: ipython
-  - downstream: jupyter_server
+  # #103: times out in `test_execution_state`
+  #
+  #  AssertionError: assert 'starting' == 'busy'
+  #
+  # - downstream: jupyter_server
   - downstream: jupyterlab
   - downstream: nbconvert-core
 
