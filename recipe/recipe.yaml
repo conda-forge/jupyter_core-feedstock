@@ -5,7 +5,7 @@ context:
   version: "5.9.0"
   python_check_max: "3.14"
   # linter doesn't like `if` in `host` for `noarch`
-  arch_package: ${{ "pywin32" if noarch_platform == "win" else "python "}}
+  arch_package: ${{ "pywin32" if noarch_platform == "win" else "python" }}
 
 package:
   name: jupyter_core
