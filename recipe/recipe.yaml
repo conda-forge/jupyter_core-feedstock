@@ -69,7 +69,8 @@ tests:
   # - downstream: jupyter_server
   # #103: v0 recipe
   # - downstream: jupyterlab
-  - downstream: nbconvert-core
+  # #103: needs updated build for `python_min: 3.10`
+  # - downstream: nbconvert-core
 
 about:
   license: BSD-3-Clause
